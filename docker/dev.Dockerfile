@@ -21,7 +21,7 @@ COPY --from=codegolf/lang-java       ["/", "/langs/java/rootfs/"      ] # 69.2 M
 COPY --from=codegolf/lang-hexagony   ["/", "/langs/hexagony/rootfs/"  ] # 62.6 MiB
 COPY --from=codegolf/lang-python     ["/", "/langs/python/rootfs/"    ] #   57 MiB
 COPY --from=codegolf/lang-raku       ["/", "/langs/raku/rootfs/"      ] # 53.9 MiB
-COPY --from=codegolf/lang-assembly   ["/", "/langs/assembly/rootfs/"  ] # 48.7 MiB
+COPY --from=codegolf/lang-assembly   ["/", "/langs/assembly/rootfs/"  ] # 49.5 MiB
 COPY --from=codegolf/lang-lisp       ["/", "/langs/lisp/rootfs/"      ] # 33.6 MiB
 COPY --from=codegolf/lang-javascript ["/", "/langs/javascript/rootfs/"] # 21.6 MiB
 COPY --from=codegolf/lang-nim        ["/", "/langs/nim/rootfs/"       ] # 21.6 MiB
@@ -41,5 +41,8 @@ COPY run-lang.c ./
 
 RUN gcc -Wall -Werror -Wextra -o /usr/bin/run-lang -s -static run-lang.c
 
-# reflex reruns a command when files change.
-CMD reflex -sd none -r '\.(css|go|html|js|pem|svg|toml)$' -R '_test\.go$' -- go run -tags dev .
+# Redirect core dumps to /tmp/core, for Assembly error analysis, and restart
+# the server when files are changed.
+CMD sysctl -w kernel.core_pattern=/tmp/core \
+ && reflex -sd none -r '\.(css|go|html|js|pem|svg|toml)$' -R '_test\.go$' \
+ -- go run -tags dev .
