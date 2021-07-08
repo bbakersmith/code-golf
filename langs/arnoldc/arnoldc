@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+if [ "$1" = "--version" ]; then
+    /opt/jdk/bin/java --version
+    exit 0
+fi
+
+export LC_ALL=C.UTF-8
+
+cd /tmp
+
+# Compile
+cat - > code.arnoldc
+/opt/jdk/bin/java -jar /usr/lib/ArnoldC.jar code.arnoldc
+rm code.arnoldc
+
+# Execute
+/opt/jdk/bin/java code

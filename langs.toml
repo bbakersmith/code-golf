@@ -17,6 +17,16 @@ v               ~<
 ^       <       <
 '''
 
+[ArnoldC]
+size    = '82.2 MiB'
+version = '3dd905b'
+website = 'https://github.com/lhartikk/ArnoldC'
+example = '''
+IT'S SHOWTIME
+TALK TO THE HAND "hello world"
+YOU HAVE BEEN TERMINATED
+'''
+
 [Assembly]
 size    = '48.7 MiB'
 version = 'DefAssembler 1.6.1'
