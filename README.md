@@ -31,17 +31,22 @@ The certificate is at "./localhost.pem" and the key at "./localhost-key.pem" ✅
 $ ./build-assets
 ```
 
-4. Bring up the website:
+4.  Install NPM packages
+```
+$ npm install .
+```
+
+5. Bring up the website:
 ```
 $ make dev
 ```
 
-5. Optionally, load information from the code.golf database.
+6. Optionally, load information from the code.golf database.
 ```
 go run utils/update_sql_from_api.go
 ```
 
-6. Navigate to https://localhost
+7. Navigate to https://localhost
 
 ## Hacking
 
