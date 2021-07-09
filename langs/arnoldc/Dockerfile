@@ -25,7 +25,7 @@ COPY --from=0 /empty                      /tmp
 COPY --from=0 /usr/lib/locale             /usr/lib/locale/
 COPY --from=0 /usr/lib/ArnoldC.jar        /usr/lib/
 
-# bash is used for the /usr/bin/java script. I couldn't get it to work with busybox sh.
+# bash is used for the /usr/bin/java script. Pattern copied from java lang Dockerfile.
 COPY --from=1 /bin/bash                 /bin/
 COPY --from=1 /lib/ld-musl-x86_64.so.1  /lib
 COPY --from=1 /usr/lib/libncursesw.so.6 \
